@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/CCUGym/static/css/main.5f7aafd7.css",
-    "main.js": "/CCUGym/static/js/main.cc43a8f4.js",
+    "main.js": "/CCUGym/static/js/main.5db537fd.js",
     "static/js/453.59d8c070.chunk.js": "/CCUGym/static/js/453.59d8c070.chunk.js",
     "index.html": "/CCUGym/index.html",
     "main.5f7aafd7.css.map": "/CCUGym/static/css/main.5f7aafd7.css.map",
-    "main.cc43a8f4.js.map": "/CCUGym/static/js/main.cc43a8f4.js.map",
+    "main.5db537fd.js.map": "/CCUGym/static/js/main.5db537fd.js.map",
     "453.59d8c070.chunk.js.map": "/CCUGym/static/js/453.59d8c070.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5f7aafd7.css",
-    "static/js/main.cc43a8f4.js"
+    "static/js/main.5db537fd.js"
   ]
 }
