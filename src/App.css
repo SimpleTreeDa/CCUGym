@@ -12,7 +12,6 @@
 .tabs {
   display: flex;
   flex-wrap: wrap;
-  /* allow tabs to wrap on small screens */
   justify-content: center;
   gap: 5px;
   margin-bottom: 20px;
@@ -28,7 +27,6 @@
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
   flex: 1 1 auto;
-  /* allows buttons to stretch on mobile */
   min-width: 100px;
 }
 
@@ -42,49 +40,37 @@
   max-width: 100%;
   height: auto;
 }
+
 /* Light mode */
 .App.light {
   background-color: #ffffff;
-  /* pure white */
   color: #000000;
-  /* black text */
 }
 
 .App.light .tabs button {
   background-color: #ffffff;
-  /* white buttons */
   color: #000000;
-  /* black text */
   border: 1px solid #000000;
-  /* black border */
 }
 
 .App.light .tabs button.active {
   background-color: #000000;
-  /* black active tab */
   color: #ffffff;
-  /* white text */
 }
 
 .App.light .darkmode-btn {
   background-color: #ffffff;
-  /* white toggle background */
   color: #000000;
-  /* black text */
   border: 1px solid #000000;
-  /* black border */
 }
 
 .App.light .darkmode-btn:hover {
   background-color: #f0f0f0;
-  /* subtle gray hover */
 }
 
 .App.light .upgrade-btn {
   background-color: #4caf50;
-  /* green accent */
   color: #ffffff;
-  /* white text */
 }
 
 .App.light .upgrade-btn:hover {
@@ -94,23 +80,19 @@
 /* Admin panel light mode */
 .admin-panel.light {
   background-color: #ffffff;
-  /* white panel */
   color: #000000;
-  /* black text */
 }
 
 .admin-panel.light input,
 .admin-panel.light button {
   background-color: #ffffff;
-  /* white inputs/buttons */
   color: #000000;
-  /* black text */
   border: 1px solid #000000;
-  /* black border */
 }
+
 /* Dark mode */
 .App.dark {
-  background-color: #121212;
+  background-color: #000;
   color: #f1f1f1;
 }
 
@@ -125,13 +107,24 @@
   color: #fff;
 }
 
-/* HTML & Body */
+/* Ensure the whole page stays black in dark mode */
 html,
 body {
   margin: 0;
   padding: 0;
   height: 100%;
+}
+
+body.dark,
+html.dark,
+.App.dark {
+  background-color: #000 !important;
+  color: #f1f1f1;
+}
+
+.overview {
   background-color: inherit;
+  min-height: 100vh;
 }
 
 /* Admin Panel Styles */
@@ -146,13 +139,11 @@ body {
   box-sizing: border-box;
 }
 
-/* Light mode */
 .admin-panel.light {
   background-color: #f9f9f9;
   color: #000;
 }
 
-/* Dark mode */
 .admin-panel.dark {
   background-color: #121212;
   color: #f1f1f1;
@@ -202,6 +193,7 @@ body {
     max-width: 100%;
   }
 }
+
 /* Header layout */
 .app-header {
   display: flex;
@@ -209,7 +201,6 @@ body {
   align-items: center;
   margin-bottom: 20px;
   gap: 10px;
-  /* spacing between title and buttons */
 }
 
 /* Buttons container */
