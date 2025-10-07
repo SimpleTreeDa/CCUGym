@@ -5,7 +5,7 @@ function OverviewTab() {
     const MAX_RESOLUTION = 2000;
     const MIN_SCALE = 1;
 
-    const savedScale = parseInt(localStorage.getItem("gymFloorScale")) || MIN_SCALE;
+    const savedScale = parseInt(localStorage.getItem("gymFloorScale")) || 25;
 
     const [imageUrl, setImageUrl] = useState("");
     const [scale, setScale] = useState(savedScale);
