@@ -1,38 +1,222 @@
+/* Base styles */
 .App {
+  min-height: 100vh;
   text-align: center;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Tabs */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  /* allow tabs to wrap on small screens */
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.tabs button {
+  padding: 10px 15px;
+  margin: 0;
+  cursor: pointer;
+  border: 1px solid #333;
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+  flex: 1 1 auto;
+  /* allows buttons to stretch on mobile */
+  min-width: 100px;
+}
+
+.tabs button.active {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Tab content images */
+.tab-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Light mode */
+.App.light {
+  background-color: #f9f9f9;
+  color: #000;
+}
+
+.App.light .tabs button {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #333;
+}
+
+.App.light .tabs button.active {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Dark mode */
+.App.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+.App.dark .tabs button {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+.App.dark .tabs button.active {
+  background-color: #555;
+  color: #fff;
+}
+
+/* HTML & Body */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: inherit;
+}
+
+/* Admin Panel Styles */
+.admin-panel {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Light mode */
+.admin-panel.light {
+  background-color: #f9f9f9;
+  color: #000;
+}
+
+/* Dark mode */
+.admin-panel.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+/* Inputs and buttons */
+.admin-panel input,
+.admin-panel button {
+  width: 100%;
+  max-width: 250px;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+  box-sizing: border-box;
+}
+
+.admin-panel.light input,
+.admin-panel.light button {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+.admin-panel.dark input,
+.admin-panel.dark button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .tabs button {
+    padding: 8px 10px;
+    font-size: 14px;
+    min-width: 80px;
+  }
+
+  .admin-panel {
+    padding: 15px;
+    margin: 15px;
+  }
+
+  .admin-panel input,
+  .admin-panel button {
+    max-width: 100%;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Header layout */
+.app-header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+  /* spacing between title and buttons */
+}
+
+/* Buttons container */
+.header-buttons {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Button styling */
+.upgrade-btn,
+.darkmode-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Upgrade button */
+.upgrade-btn {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.upgrade-btn:hover {
+  background-color: #45a049;
+}
+
+/* Dark/Light Mode button */
+.darkmode-btn {
+  background-color: #333;
+  color: #fff;
+}
+
+.App.light .darkmode-btn {
+  background-color: #ccc;
+  color: #000;
+}
+
+.darkmode-btn:hover {
+  opacity: 0.8;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 480px) {
+  .header-buttons {
+    flex-direction: column;
+    width: 100%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .upgrade-btn,
+  .darkmode-btn {
+    width: 90%;
   }
 }
