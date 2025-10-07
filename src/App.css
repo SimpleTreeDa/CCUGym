@@ -42,24 +42,72 @@
   max-width: 100%;
   height: auto;
 }
-
 /* Light mode */
 .App.light {
-  background-color: #f9f9f9;
-  color: #000;
+  background-color: #ffffff;
+  /* pure white */
+  color: #000000;
+  /* black text */
 }
 
 .App.light .tabs button {
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #333;
+  background-color: #ffffff;
+  /* white buttons */
+  color: #000000;
+  /* black text */
+  border: 1px solid #000000;
+  /* black border */
 }
 
 .App.light .tabs button.active {
-  background-color: #333;
-  color: #fff;
+  background-color: #000000;
+  /* black active tab */
+  color: #ffffff;
+  /* white text */
 }
 
+.App.light .darkmode-btn {
+  background-color: #ffffff;
+  /* white toggle background */
+  color: #000000;
+  /* black text */
+  border: 1px solid #000000;
+  /* black border */
+}
+
+.App.light .darkmode-btn:hover {
+  background-color: #f0f0f0;
+  /* subtle gray hover */
+}
+
+.App.light .upgrade-btn {
+  background-color: #4caf50;
+  /* green accent */
+  color: #ffffff;
+  /* white text */
+}
+
+.App.light .upgrade-btn:hover {
+  background-color: #45a049;
+}
+
+/* Admin panel light mode */
+.admin-panel.light {
+  background-color: #ffffff;
+  /* white panel */
+  color: #000000;
+  /* black text */
+}
+
+.admin-panel.light input,
+.admin-panel.light button {
+  background-color: #ffffff;
+  /* white inputs/buttons */
+  color: #000000;
+  /* black text */
+  border: 1px solid #000000;
+  /* black border */
+}
 /* Dark mode */
 .App.dark {
   background-color: #121212;

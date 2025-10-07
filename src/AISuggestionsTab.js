@@ -74,6 +74,7 @@ const AISuggestionsTab = ({ darkMode }) => {
         boxShadow: darkMode
             ? "0 0 10px rgba(255, 255, 255, 0.1)"
             : "0 0 10px rgba(0, 0, 0, 0.1)",
+        transition: "background-color 0.3s, color 0.3s", // <--- smooth transition
     };
 
     const textareaStyle = {
@@ -85,6 +86,7 @@ const AISuggestionsTab = ({ darkMode }) => {
         backgroundColor: darkMode ? "#333" : "#fff",
         border: `1px solid ${darkMode ? "#555" : "#ccc"}`,
         borderRadius: "5px",
+        transition: "background-color 0.3s, color 0.3s, border 0.3s", // <--- smooth transition
     };
 
     const suggestionStyle = {
@@ -94,6 +96,7 @@ const AISuggestionsTab = ({ darkMode }) => {
         borderRadius: "5px",
         backgroundColor: darkMode ? "#333" : "#f9f9f9",
         color: darkMode ? "#fff" : "#000",
+        transition: "background-color 0.3s, color 0.3s, border 0.3s", // <--- smooth transition
     };
 
     const buttonStyle = {

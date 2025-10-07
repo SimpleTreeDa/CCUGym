@@ -11,3 +11,67 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.equipment-list-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.equipment-list-container.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.equipment-list-container.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+.equipment-section h2 {
+  margin-bottom: 15px;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 5px;
+  transition: color 0.3s;
+}
+
+.equipment-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.equipment-card {
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease, transform 0.2s;
+}
+
+.equipment-card.light {
+  background-color: #f9f9f9;
+  color: #000;
+}
+
+.equipment-card.dark {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+.equipment-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.people-count {
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 20px;
+}

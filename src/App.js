@@ -1,3 +1,4 @@
+// App.js
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import AdminPanel from "./AdminPanel";
@@ -5,7 +6,7 @@ import EquipmentList from "./EquipmentList";
 import OverviewTab from "./OverviewTab";
 import UpgradeToPro from "./UpgradeToPro";
 import AISuggestionsTab from "./AISuggestionsTab";
-
+document.body.className = localStorage.getItem("darkMode") === "true" ? "dark" : "light";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 function App() {
@@ -14,14 +15,21 @@ function App() {
   const [isPro, setIsPro] = useState(false);
   const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "true");
 
+  // 🔧 Keep the <body> color in sync with darkMode
+  useEffect(() => {
+    document.body.className = darkMode ? "dark" : "light";
+  }, [darkMode]);
+
   const toggleDarkMode = () => {
     setDarkMode((prev) => {
-      localStorage.setItem("darkMode", !prev);
-      return !prev;
+      const newMode = !prev;
+      localStorage.setItem("darkMode", newMode);
+      document.body.className = newMode ? "dark" : "light";
+      return newMode;
     });
   };
 
-  // Check and validate Pro token
+  // ✅ Validate Pro Token
   useEffect(() => {
     const validateProToken = async () => {
       const token = localStorage.getItem("proToken");
@@ -47,7 +55,7 @@ function App() {
     validateProToken();
   }, []);
 
-  // Poll gym count
+  // ✅ Poll gym count
   useEffect(() => {
     const fetchCount = async () => {
       try {
@@ -88,18 +96,30 @@ function App() {
 
       {/* Tabs */}
       <div className="tabs">
-        <button className={activeTab === "overview" ? "active" : ""} onClick={() => handleTabClick("overview")}>
+        <button
+          className={activeTab === "overview" ? "active" : ""}
+          onClick={() => handleTabClick("overview")}
+        >
           Overview ({peopleCount})
         </button>
-        <button className={activeTab === "list" ? "active" : ""} onClick={() => handleTabClick("list")}>
+        <button
+          className={activeTab === "list" ? "active" : ""}
+          onClick={() => handleTabClick("list")}
+        >
           Equipment
         </button>
         {isPro && (
-          <button className={activeTab === "ai" ? "active" : ""} onClick={() => handleTabClick("ai")}>
+          <button
+            className={activeTab === "ai" ? "active" : ""}
+            onClick={() => handleTabClick("ai")}
+          >
             AI Suggestions
           </button>
         )}
-        <button className={activeTab === "admin" ? "active" : ""} onClick={() => handleTabClick("admin")}>
+        <button
+          className={activeTab === "admin" ? "active" : ""}
+          onClick={() => handleTabClick("admin")}
+        >
           Admin
         </button>
       </div>
