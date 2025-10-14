@@ -1,17 +1,22 @@
 // EquipmentList.js
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 function EquipmentList({ darkMode }) {
     const [equipmentData, setEquipmentData] = useState([]);
     const [peopleCount, setPeopleCount] = useState(0);
+    const equipmentDataRef = useRef(null);
 
     useEffect(() => {
         const fetchEquipment = async () => {
             try {
                 const res = await fetch(`${API_BASE_URL}/api/equipment`);
                 const data = await res.json();
-                setEquipmentData(data);
+                const newDataString = JSON.stringify(data);
+                if (equipmentDataRef.current !== newDataString) {
+                    equipmentDataRef.current = newDataString;
+                    setEquipmentData(data);
+                }
             } catch (err) {
                 console.error(err);
             }
@@ -29,8 +34,12 @@ function EquipmentList({ darkMode }) {
 
         fetchEquipment();
         fetchPeopleCount();
-        const intervalId = setInterval(fetchPeopleCount, 5000);
-        return () => clearInterval(intervalId);
+        const equipmentIntervalId = setInterval(fetchEquipment, 5000);
+        const peopleCountIntervalId = setInterval(fetchPeopleCount, 5000);
+        return () => {
+            clearInterval(equipmentIntervalId);
+            clearInterval(peopleCountIntervalId);
+        };
     }, []);
 
     const renderTable = (section) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 function OverviewTab() {
@@ -10,26 +10,62 @@ function OverviewTab() {
     const [imageUrl, setImageUrl] = useState("");
     const [scale, setScale] = useState(savedScale);
     const [showResolutionBar, setShowResolutionBar] = useState(false);
+    const previousImageDataRef = useRef(null);
 
     const fetchImage = (scalePercent) => {
         const effectiveScale = Math.max(scalePercent, MIN_SCALE);
         const resolution = Math.round((effectiveScale / 100) * MAX_RESOLUTION);
 
-        fetch(`${API_BASE_URL}/api/gym-floor?width=${resolution}&height=${resolution}`)
+        return fetch(`${API_BASE_URL}/api/gym-floor?width=${resolution}&height=${resolution}`)
             .then((res) => res.blob())
-            .then((blob) => setImageUrl(URL.createObjectURL(blob)))
-            .catch(console.error);
+            .then((blob) => {
+                return new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        const base64data = reader.result;
+                        resolve({ blob, base64data });
+                    };
+                    reader.readAsDataURL(blob);
+                });
+            })
+            .catch((error) => {
+                console.error(error);
+                return null;
+            });
     };
 
     useEffect(() => {
-        fetchImage(savedScale);
+        // Initial fetch
+        fetchImage(savedScale).then((result) => {
+            if (result) {
+                previousImageDataRef.current = result.base64data;
+                setImageUrl(URL.createObjectURL(result.blob));
+            }
+        });
+
+        // Polling every 5 seconds
+        const intervalId = setInterval(() => {
+            fetchImage(scale).then((result) => {
+                if (result && result.base64data !== previousImageDataRef.current) {
+                    previousImageDataRef.current = result.base64data;
+                    setImageUrl(URL.createObjectURL(result.blob));
+                }
+            });
+        }, 5000);
+
+        return () => clearInterval(intervalId);
         // eslint-disable-next-line
     }, []);
 
     function handleApply() {
         const effectiveScale = Math.max(scale, MIN_SCALE);
         localStorage.setItem("gymFloorScale", effectiveScale);
-        fetchImage(effectiveScale);
+        fetchImage(effectiveScale).then((result) => {
+            if (result) {
+                previousImageDataRef.current = result.base64data;
+                setImageUrl(URL.createObjectURL(result.blob));
+            }
+        });
     }
 
     useEffect(() => {
